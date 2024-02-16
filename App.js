@@ -9,6 +9,8 @@ import Verification from './src/screens/Verification';
 import GenericBodyCard from './src/GenericComponent/GenericBodyCard';
 import { Users } from './src/screens/Users';
 import { Accounts } from './src/screens/Account';
+const axios = require('axios');
+
 
 const Stack = createNativeStackNavigator();
 
@@ -34,21 +36,26 @@ export default function App() {
         <Stack.Screen name="welcome" component={Welcome}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
             }
           }
         />
         <Stack.Screen name="login" component={Login}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+              
             }
           }
         />
         <Stack.Screen name="signup" component={Signup}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+
             }
           }
 
@@ -59,7 +66,9 @@ export default function App() {
         }
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+
             }
           }
         />
@@ -67,7 +76,9 @@ export default function App() {
         <Stack.Screen name="Verification" component={Verification}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+
             }
           }
         />
@@ -75,7 +86,9 @@ export default function App() {
           UserComponent}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+
             }
           }
         />
@@ -83,7 +96,9 @@ export default function App() {
           AccountComponent}
           options={
             {
-              headerShown: false
+              headerShown: true,
+              headerBackButtonMenuEnabled:true
+
             }
           }
         />

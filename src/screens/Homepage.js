@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, View, TextInput, Button, Text, ScrollView } from 'react-native';
 import { urlHead } from '../helper/extrapropertise';
+import axios, * as others from 'axios';
+
+//const axios = require('axios');
+
 
 const ProjectDetailsModal = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -103,13 +107,32 @@ const ProjectDetailsModal = ({ navigation }) => {
     // Close the modal
     setModalVisible(false);
     console.log("lets print form data", formData);
+    
   };
+  const [file,setFile]=useState(null);
+  const [image,setImage]=useState()
+  const  handleUpload = (e) =>{
+      console.log(file);
+      const formdata = new FormData()
+      formData.append('file',file)
+      axios.post('http://localhost:3000/upload',formdata)
+      .then(res=>setImage(res.data[0].image))
+      .catch(err=>console.log(err))
+
+  }
+  useEffect(()=>{
+    axios.get('http://localhost:3000/getImage')
+    .then(res=>setImage(res.data[0].image))
+    .catch(err=>console.log(err))
+  },[])
+  
+ 
 
 
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',gap:'10px' }}>
-      <Button title="Open Project Details" onPress={() => setModalVisible(true)} />
+      <Button title="Add new Project Details" onPress={() => setModalVisible(true)} />
       <Button title="Users" onPress={() =>
         navigation.navigate('Users')
       } />
@@ -124,7 +147,7 @@ const ProjectDetailsModal = ({ navigation }) => {
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
           <ScrollView style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
-            <Text>Project Details</Text>
+            <Text>Section 1: Client Basic Details</Text>
             <TextInput
               placeholder="Title"
               value={formData.title}
@@ -203,11 +226,142 @@ const ProjectDetailsModal = ({ navigation }) => {
               onChangeText={(text) => handleInputChange('email', text)}
               style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
             />
+            <Text>Section 2: Presentation Drawing </Text>
+            <TextInput
+              placeholder="upload Presentation Drawing"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="file upload Presentation Drawing"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Add Button to add more presentation drawing"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <Text>Section 3: 3D Model and Design </Text>
+            <TextInput
+              placeholder="Upload option to add 3d model 1"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Upload option to add 3d model 2"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Upload option to add 3d model 3"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Add Button to add more presentation drawing"
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <Text>Section 4: Submission Drawing  </Text>
+            <TextInput
+              placeholder="Sanction Date add google Date "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Plint "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Revised Sanction Date "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="Completion Date "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <Text>Section 5: Working  Drawing  </Text>
+            <TextInput
+              placeholder="RCC drawing upload and give 2 checkbox "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+             <TextInput
+              placeholder="RCC : Column footing "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+              <TextInput
+              placeholder="RCC : Pleanth Beam "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+              <TextInput
+              placeholder="RCC : Staircase Drawing  "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+              <TextInput
+              placeholder="RCC : first Slab  "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="RCC : Second  Slab  "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="RCC : Third  Slab  "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+            <TextInput
+              placeholder="ADD option to add more slab "
+              value={formData.email}
+              onChangeText={(text) => handleInputChange('email', text)}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 10 }}
+            />
+
+            
+
+
+
+            
+
             <Button title="Submit" onPress={() => Modal1Bkcall()} />
             <Button title="Close" onPress={() => setModalVisible(false)} />
           </ScrollView>
         </View>
       </Modal>
+      <div> 
+          <input type='file' onChange={e=>setFile(e.target.files[0])}></input>
+          <button onClick={handleUpload}>upload</button>
+      </div>
+      <br></br>
+      <img src={`http://localhost:3000/Images/`+image} alt="link chalana"></img>
     </View>
   );
 };
